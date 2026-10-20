@@ -10,33 +10,68 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ListAnimationsRouteImport } from './routes/list/animations'
+import { Route as ListComponentsRouteImport } from './routes/list/components'
+import { Route as ListGesturesRouteImport } from './routes/list/gestures'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ListAnimationsRoute = ListAnimationsRouteImport.update({
+  id: '/list/animations',
+  path: '/list/animations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ListComponentsRoute = ListComponentsRouteImport.update({
+  id: '/list/components',
+  path: '/list/components',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ListGesturesRoute = ListGesturesRouteImport.update({
+  id: '/list/gestures',
+  path: '/list/gestures',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/list/animations': typeof ListAnimationsRoute
+  '/list/components': typeof ListComponentsRoute
+  '/list/gestures': typeof ListGesturesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/list/animations': typeof ListAnimationsRoute
+  '/list/components': typeof ListComponentsRoute
+  '/list/gestures': typeof ListGesturesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/list/animations': typeof ListAnimationsRoute
+  '/list/components': typeof ListComponentsRoute
+  '/list/gestures': typeof ListGesturesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/list/animations' | '/list/components' | '/list/gestures'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/list/animations' | '/list/components' | '/list/gestures'
+  id:
+    | '__root__'
+    | '/'
+    | '/list/animations'
+    | '/list/components'
+    | '/list/gestures'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ListAnimationsRoute: typeof ListAnimationsRoute
+  ListComponentsRoute: typeof ListComponentsRoute
+  ListGesturesRoute: typeof ListGesturesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +83,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/list/animations': {
+      id: '/list/animations'
+      path: '/list/animations'
+      fullPath: '/list/animations'
+      preLoaderRoute: typeof ListAnimationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/list/components': {
+      id: '/list/components'
+      path: '/list/components'
+      fullPath: '/list/components'
+      preLoaderRoute: typeof ListComponentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/list/gestures': {
+      id: '/list/gestures'
+      path: '/list/gestures'
+      fullPath: '/list/gestures'
+      preLoaderRoute: typeof ListGesturesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ListAnimationsRoute: ListAnimationsRoute,
+  ListComponentsRoute: ListComponentsRoute,
+  ListGesturesRoute: ListGesturesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
