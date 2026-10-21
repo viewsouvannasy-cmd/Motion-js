@@ -12,7 +12,6 @@ export function Overview() {
         <div className="flex justify-between">
           <motion.div
             initial={{ filter: "blur(10px)" }}
-
             className="h-30 w-30 border-2"
             animate={{ filter: "none", y, x, rotate }}
             transition={{ type: "spring" }}
