@@ -72,8 +72,19 @@ export function Overview() {
               scale: [1, 1.2, 1.5, 1],
               borderRadius: [10, 50, 100, 10],
             }}
+
             transition={{ repeat: Infinity, duration: 2, repeatDelay: 1 }}
           />
+        </div>
+
+        <div>
+          <motion.div
+            className="h-40 w-40 border border-dotted"
+            initial={{ opacity: 0 }}
+            whileHover={{ backgroundColor: "rgba(0, 0, 0)" }}
+            whileTap={{ backgroundColor: "rgba(255, 255, 255, 1)" }}
+            whileInView={{ opacity: 1 }}
+          ></motion.div>
         </div>
       </div>
     </div>
