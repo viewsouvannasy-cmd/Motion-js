@@ -18,6 +18,13 @@ function RouteComponent() {
           >
             Animations
           </Link>
+          <Link
+            to="/list/profile-pixel"
+
+            className="cursor-pointer bg-gray-400 px-3 py-1.5"
+          >
+            Profile Pixel
+          </Link>
         </div>
       </div>
     </div>

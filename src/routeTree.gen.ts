@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ListAnimationsRouteImport } from './routes/list/animations'
 import { Route as ListComponentsRouteImport } from './routes/list/components'
 import { Route as ListGesturesRouteImport } from './routes/list/gestures'
+import { Route as ListProfilePixelRouteImport } from './routes/list/profile-pixel'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,18 +35,25 @@ const ListGesturesRoute = ListGesturesRouteImport.update({
   path: '/list/gestures',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ListProfilePixelRoute = ListProfilePixelRouteImport.update({
+  id: '/list/profile-pixel',
+  path: '/list/profile-pixel',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/list/animations': typeof ListAnimationsRoute
   '/list/components': typeof ListComponentsRoute
   '/list/gestures': typeof ListGesturesRoute
+  '/list/profile-pixel': typeof ListProfilePixelRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/list/animations': typeof ListAnimationsRoute
   '/list/components': typeof ListComponentsRoute
   '/list/gestures': typeof ListGesturesRoute
+  '/list/profile-pixel': typeof ListProfilePixelRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,18 +61,30 @@ export interface FileRoutesById {
   '/list/animations': typeof ListAnimationsRoute
   '/list/components': typeof ListComponentsRoute
   '/list/gestures': typeof ListGesturesRoute
+  '/list/profile-pixel': typeof ListProfilePixelRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/list/animations' | '/list/components' | '/list/gestures'
+  fullPaths:
+    | '/'
+    | '/list/animations'
+    | '/list/components'
+    | '/list/gestures'
+    | '/list/profile-pixel'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/list/animations' | '/list/components' | '/list/gestures'
+  to:
+    | '/'
+    | '/list/animations'
+    | '/list/components'
+    | '/list/gestures'
+    | '/list/profile-pixel'
   id:
     | '__root__'
     | '/'
     | '/list/animations'
     | '/list/components'
     | '/list/gestures'
+    | '/list/profile-pixel'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -72,6 +92,7 @@ export interface RootRouteChildren {
   ListAnimationsRoute: typeof ListAnimationsRoute
   ListComponentsRoute: typeof ListComponentsRoute
   ListGesturesRoute: typeof ListGesturesRoute
+  ListProfilePixelRoute: typeof ListProfilePixelRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -104,6 +125,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ListGesturesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/list/profile-pixel': {
+      id: '/list/profile-pixel'
+      path: '/list/profile-pixel'
+      fullPath: '/list/profile-pixel'
+      preLoaderRoute: typeof ListProfilePixelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -112,6 +140,7 @@ const rootRouteChildren: RootRouteChildren = {
   ListAnimationsRoute: ListAnimationsRoute,
   ListComponentsRoute: ListComponentsRoute,
   ListGesturesRoute: ListGesturesRoute,
+  ListProfilePixelRoute: ListProfilePixelRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
